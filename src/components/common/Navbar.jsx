@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ShieldAlert, Compass, TreePine, BarChart3, Layers, Info, Menu, X, Globe2, Activity } from 'lucide-react';
 
-export default function Navbar({ activeTab, setActiveTab, alertCount = 10 }) {
+export default function Navbar({ activeTab, setActiveTab, alertCount = 10, weather = null }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
@@ -22,16 +22,21 @@ export default function Navbar({ activeTab, setActiveTab, alertCount = 10 }) {
 
   return (
     <header className="sticky top-0 z-50 bg-slate-900 text-white shadow-lg border-b border-slate-800">
-      {/* Top agency metadata banner */}
-      <div className="bg-emerald-950/90 text-emerald-300 text-xs px-4 py-1 border-b border-emerald-800/40 flex justify-between items-center tracking-wide font-mono">
+      {/* Top agency metadata banner with live weather telemetry */}
+      <div className="bg-emerald-950/95 text-emerald-300 text-xs px-4 py-1.5 border-b border-emerald-800/40 flex flex-wrap justify-between items-center tracking-wide font-mono gap-2">
         <div className="flex items-center space-x-2">
           <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>GOVERNMENT & COMMUNITY ENVIRONMENTAL INITIATIVE • PUNE METROPOLITAN REGION</span>
+          <span>PUNE METROPOLITAN OBSERVATORY</span>
+          {weather?.current && (
+            <span className="hidden sm:inline bg-emerald-900/90 text-emerald-200 px-2 py-0.5 rounded border border-emerald-700/60 font-semibold">
+              LIVE: {weather.current.temperature}°C ({weather.current.weather}) • Hum: {weather.current.humidity}% • Wind: {weather.current.wind?.speed} m/s {weather.current.wind?.dir} • UV: {weather.current.uv_index}
+            </span>
+          )}
         </div>
-        <div className="hidden md:flex items-center space-x-4 text-emerald-400/80">
+        <div className="flex items-center space-x-3 text-emerald-400/90 text-[11px]">
           <span>LAT: 18.5204° N</span>
           <span>LNG: 73.8567° E</span>
-          <span className="bg-emerald-800/40 text-emerald-200 px-1.5 py-0.5 rounded text-[10px]">MONITORING ACTIVE</span>
+          <span className="bg-emerald-800/50 text-emerald-200 px-1.5 py-0.5 rounded text-[10px] font-bold">STATION ONLINE</span>
         </div>
       </div>
 

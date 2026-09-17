@@ -1,6 +1,7 @@
 import React from 'react';
 import HeroSection from '../components/home/HeroSection';
 import StatsBanner from '../components/home/StatsBanner';
+import LiveWeatherCard from '../components/home/LiveWeatherCard';
 import PuneLeafletMap from '../components/map/PuneLeafletMap';
 import SpeciesCard from '../components/species/SpeciesCard';
 import { SeverityBadge } from '../components/common/Badge';
@@ -12,6 +13,7 @@ export default function HomePage({
   alerts = [],
   sightings = [],
   climateData = null,
+  weather = null,
   setActiveTab,
   onSelectRegion,
   onSelectSpecies,
@@ -30,7 +32,10 @@ export default function HomePage({
       {/* 1. Hero Section */}
       <HeroSection setActiveTab={setActiveTab} urgentAlert={urgentAlert} />
 
-      {/* 2. Stats Banner */}
+      {/* 2. Live Pune Weather Telemetry */}
+      {weather && <LiveWeatherCard weather={weather} />}
+
+      {/* 3. Stats Banner */}
       <StatsBanner
         speciesCount={species.length}
         regionsCount={regions.length}

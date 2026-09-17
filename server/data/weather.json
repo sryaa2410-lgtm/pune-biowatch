@@ -1,0 +1,79 @@
+{
+  "request": {
+    "place_id": "pune",
+    "language": "en",
+    "unit": "metric"
+  },
+  "timezone": "Asia/Kolkata",
+  "units": "metric",
+  "current": {
+    "icon_num": 5,
+    "weather": "Mostly cloudy",
+    "temperature": 28,
+    "feels_like": 30.2,
+    "dew_point": 22.2,
+    "wind": {
+      "speed": 3.1,
+      "gusts": 4.1,
+      "angle": 259,
+      "dir": "W"
+    },
+    "precipitation": {
+      "total": 0
+    },
+    "cloud_cover": 75,
+    "irradiance": 693.86,
+    "pressure": 1013,
+    "uv_index": 7.77,
+    "humidity": 71
+  },
+  "hourly": {
+    "date": "2026-09-17T11:00:00",
+    "icon": 5,
+    "summary": "Mostly cloudy",
+    "temperature": 29,
+    "temperature1829": 21.8,
+    "feels_like": 31.5,
+    "dew_point": 22.2,
+    "wind": {
+      "speed": 3.6,
+      "gusts": 4.2,
+      "dir": "WSW",
+      "angle": 257
+    },
+    "cloud_cover": {
+      "total": 77
+    },
+    "pressure": 1013,
+    "precipitation": {
+      "total": 0
+    },
+    "probability": {
+      "precipitation": 30
+    },
+    "irradiance": 757.68,
+    "humidity": 67
+  },
+  "daily": {
+    "day": "2026-09-17",
+    "icon": 13,
+    "summary": "Mostly cloudy changing to rain showers in the afternoon. Temperature 22/30 °C.",
+    "all_day": {
+      "temperature_min": 22.2,
+      "temperature_max": 29.5,
+      "wind_speed": 2.8,
+      "probability": {
+        "precipitation": 17
+      }
+    },
+    "astro": {
+      "sun": {
+        "rise": "2026-09-17T06:22:50",
+        "set": "2026-09-17T18:36:03"
+      }
+    }
+  },
+  "minutely": {
+    "summary": "Summary not available for this area."
+  }
+}

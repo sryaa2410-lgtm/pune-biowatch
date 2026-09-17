@@ -1,8 +1,8 @@
 import React from 'react';
 import ClimateCharts from '../components/climate/ClimateCharts';
-import { BarChart3, Thermometer, CloudRain, Sun, Flame, Wind, ShieldCheck } from 'lucide-react';
+import { BarChart3, Thermometer, CloudRain, Sun, Flame, Wind, ShieldCheck, Activity, Droplets } from 'lucide-react';
 
-export default function ClimateDashboardPage({ climateData }) {
+export default function ClimateDashboardPage({ climateData, weather }) {
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -18,6 +18,27 @@ export default function ClimateDashboardPage({ climateData }) {
           Empirical observation of shifting precipitation regimes, extreme pre-monsoon heatwave spikes, and their quantified correlation with biodiversity stress across Pune’s 8 micro-climatic zones.
         </p>
       </div>
+
+      {/* Live Pune Telemetry Ribbon if available */}
+      {weather?.current && (
+        <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 rounded-xl p-4 text-white border border-slate-700 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+          <div className="flex items-center space-x-3">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+            <div>
+              <span className="text-emerald-400 font-bold">LIVE TELEMETRY STATION (PUNE):</span>{' '}
+              <span className="text-slate-200">{weather.current.temperature}°C</span>{' '}
+              <span className="text-slate-400">({weather.current.weather})</span> • Feels: {weather.current.feels_like}°C
+            </div>
+          </div>
+          <div className="flex flex-wrap items-center gap-4 text-slate-300 text-[11px]">
+            <span>Humidity: <b className="text-blue-300">{weather.current.humidity}%</b></span>
+            <span>Wind: <b className="text-teal-300">{weather.current.wind?.speed} m/s {weather.current.wind?.dir}</b></span>
+            <span>UV: <b className={weather.current.uv_index >= 7 ? 'text-rose-400' : 'text-amber-300'}>{weather.current.uv_index}</b></span>
+            <span>Pressure: <b>{weather.current.pressure} hPa</b></span>
+            <span>Cloud: <b>{weather.current.cloud_cover}%</b></span>
+          </div>
+        </div>
+      )}
 
       {/* Climate Charts Component */}
       <ClimateCharts climateData={climateData} />

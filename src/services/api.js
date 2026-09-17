@@ -5,6 +5,7 @@ import localSpecies from '../data/species.json';
 import localClimate from '../data/climate.json';
 import localAlerts from '../data/alerts.json';
 import localSightings from '../data/sightings.json';
+import localWeather from '../data/weather.json';
 
 const API_BASE = '/api';
 
@@ -181,6 +182,25 @@ export const api = {
       };
       localSightings.unshift(newEntry);
       return { success: true, data: newEntry };
+    }
+  },
+
+  // Live Pune Weather Telemetry
+  async getWeather(params = {}) {
+    try {
+      const q = new URLSearchParams();
+      if (params.place_id) q.append('place_id', params.place_id);
+      if (params.language) q.append('language', params.language);
+      if (params.unit) q.append('unit', params.unit);
+
+      const url = `${API_BASE}/weather${q.toString() ? `?${q.toString()}` : ''}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('Weather API fetch failed');
+      const data = await res.json();
+      return data;
+    } catch (e) {
+      console.warn('Using local fallback for live Pune weather:', e.message);
+      return localWeather;
     }
   },
 };

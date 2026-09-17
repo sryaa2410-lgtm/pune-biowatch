@@ -20,6 +20,7 @@ export default function App() {
   const [climateData, setClimateData] = useState(null);
   const [alerts, setAlerts] = useState([]);
   const [sightings, setSightings] = useState([]);
+  const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
 
   // Deep dive selection states
@@ -32,12 +33,13 @@ export default function App() {
     async function loadData() {
       try {
         setLoading(true);
-        const [regRes, spRes, climRes, alrRes, sgtRes] = await Promise.all([
+        const [regRes, spRes, climRes, alrRes, sgtRes, weatherRes] = await Promise.all([
           api.getRegions(),
           api.getSpecies(),
           api.getClimate(),
           api.getAlerts(),
           api.getSightings(),
+          api.getWeather({ place_id: 'pune', language: 'en', unit: 'metric' }),
         ]);
 
         setRegions(regRes || []);
@@ -45,6 +47,7 @@ export default function App() {
         setClimateData(climRes || null);
         setAlerts(alrRes || []);
         setSightings(sgtRes || []);
+        setWeather(weatherRes || null);
 
         if (regRes && regRes.length > 0) {
           setSelectedRegion(regRes[0]);
@@ -121,6 +124,7 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         alertCount={activeAlertCount}
+        weather={weather}
       />
 
       {/* Main Content Area */}
@@ -132,6 +136,7 @@ export default function App() {
             alerts={alerts}
             sightings={sightings}
             climateData={climateData}
+            weather={weather}
             setActiveTab={setActiveTab}
             onSelectRegion={(reg) => {
               setSelectedRegion(reg);
@@ -164,7 +169,7 @@ export default function App() {
         )}
 
         {activeTab === 'climate' && (
-          <ClimateDashboardPage climateData={climateData} />
+          <ClimateDashboardPage climateData={climateData} weather={weather} />
         )}
 
         {activeTab === 'satellite' && <SatelliteViewerPage />}
