@@ -1,41 +1,52 @@
 import React from 'react';
 import ClimateCharts from '../components/climate/ClimateCharts';
-import { BarChart3, Thermometer, CloudRain, Sun, Flame, Wind, ShieldCheck, Activity, Droplets } from 'lucide-react';
+import { BarChart3, Flame, CloudRain, Wind, Activity, Droplets, Sun } from 'lucide-react';
 
 export default function ClimateDashboardPage({ climateData, weather }) {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-        <div className="flex items-center space-x-2 text-xs font-mono uppercase text-emerald-700 font-bold mb-1">
-          <BarChart3 className="w-4 h-4 text-emerald-600" />
-          <span>Meteorological & Bio-Correlation Observatory</span>
+      <div>
+        <div className="text-[11px] font-mono uppercase text-slate-400 font-semibold tracking-wider mb-1">
+          Meteorological & Bio-Correlation Observatory
         </div>
-        <h1 className="text-2xl font-extrabold text-slate-900">
-          Pune District Climate Trends & Species Stress Analytics
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Pune District Climate Trends & Species Stress
         </h1>
         <p className="text-xs text-slate-500 mt-1 max-w-3xl">
           Empirical observation of shifting precipitation regimes, extreme pre-monsoon heatwave spikes, and their quantified correlation with biodiversity stress across Pune’s 8 micro-climatic zones.
         </p>
       </div>
 
-      {/* Live Pune Telemetry Ribbon if available */}
+      {/* Live Pune Telemetry Banner (Light Minimalist Bento Style) */}
       {weather?.current && (
-        <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 rounded-xl p-4 text-white border border-slate-700 flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
+        <div className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.02)] flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center space-x-3">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
             <div>
-              <span className="text-emerald-400 font-bold">LIVE TELEMETRY STATION (PUNE):</span>{' '}
-              <span className="text-slate-200">{weather.current.temperature}°C</span>{' '}
-              <span className="text-slate-400">({weather.current.weather})</span> • Feels: {weather.current.feels_like}°C
+              <div className="text-xs font-bold text-slate-900">
+                Live Telemetry Station (Pune): <span className="font-mono text-emerald-700">{weather.current.temperature}°C</span>{' '}
+                <span className="text-slate-500 font-normal">({weather.current.weather})</span>
+              </div>
+              <div className="text-[11px] text-slate-400">
+                Feels like {weather.current.feels_like}°C • Dew Point: {weather.current.dew_point}°C
+              </div>
             </div>
           </div>
-          <div className="flex flex-wrap items-center gap-4 text-slate-300 text-[11px]">
-            <span>Humidity: <b className="text-blue-300">{weather.current.humidity}%</b></span>
-            <span>Wind: <b className="text-teal-300">{weather.current.wind?.speed} m/s {weather.current.wind?.dir}</b></span>
-            <span>UV: <b className={weather.current.uv_index >= 7 ? 'text-rose-400' : 'text-amber-300'}>{weather.current.uv_index}</b></span>
-            <span>Pressure: <b>{weather.current.pressure} hPa</b></span>
-            <span>Cloud: <b>{weather.current.cloud_cover}%</b></span>
+
+          <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600 font-mono">
+            <span className="bg-slate-50 px-2.5 py-1 rounded-full border border-slate-100">
+              Humidity: <b className="text-slate-800">{weather.current.humidity}%</b>
+            </span>
+            <span className="bg-slate-50 px-2.5 py-1 rounded-full border border-slate-100">
+              Wind: <b className="text-slate-800">{weather.current.wind?.speed} m/s {weather.current.wind?.dir}</b>
+            </span>
+            <span className="bg-slate-50 px-2.5 py-1 rounded-full border border-slate-100">
+              UV Index: <b className={weather.current.uv_index >= 7 ? 'text-rose-600 font-bold' : 'text-slate-800'}>{weather.current.uv_index}</b>
+            </span>
+            <span className="bg-slate-50 px-2.5 py-1 rounded-full border border-slate-100">
+              Pressure: <b className="text-slate-800">{weather.current.pressure} hPa</b>
+            </span>
           </div>
         </div>
       )}
@@ -44,8 +55,8 @@ export default function ClimateDashboardPage({ climateData, weather }) {
       <ClimateCharts climateData={climateData} />
 
       {/* Pune District Climatology Brief */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-2">
           <div className="flex items-center space-x-2 text-rose-600 font-bold text-xs uppercase font-mono">
             <Flame className="w-4 h-4" />
             <span>Pre-Monsoon Thermal Spikes</span>
@@ -58,7 +69,7 @@ export default function ClimateDashboardPage({ climateData, weather }) {
           </p>
         </div>
 
-        <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+        <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-2">
           <div className="flex items-center space-x-2 text-blue-600 font-bold text-xs uppercase font-mono">
             <CloudRain className="w-4 h-4" />
             <span>Monsoon Precipitation Volatility</span>
@@ -71,7 +82,7 @@ export default function ClimateDashboardPage({ climateData, weather }) {
           </p>
         </div>
 
-        <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+        <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-2">
           <div className="flex items-center space-x-2 text-emerald-600 font-bold text-xs uppercase font-mono">
             <Wind className="w-4 h-4" />
             <span>Western Ghats Orographic Buffer</span>

@@ -101,15 +101,15 @@ export default function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center text-white font-mono space-y-4">
-        <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500 flex items-center justify-center animate-pulse">
-          <span className="text-2xl">🌿</span>
+      <div className="min-h-screen bg-[#f8fafc] flex flex-col items-center justify-center text-slate-800 space-y-4">
+        <div className="w-14 h-14 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-center text-2xl animate-pulse">
+          🌿
         </div>
-        <div className="text-sm tracking-wider text-emerald-400">
-          INITIALIZING PUNE BIOWATCH OBSERVATORY...
+        <div className="text-xs font-mono tracking-widest text-slate-500 uppercase">
+          Initializing Pune BioWatch
         </div>
-        <div className="text-xs text-slate-500">
-          Loading Western Ghats ecological datasets & microclimates
+        <div className="text-xs text-slate-400">
+          Loading Western Ghats ecological datasets & microclimates...
         </div>
       </div>
     );
@@ -118,7 +118,7 @@ export default function App() {
   const activeAlertCount = alerts.filter((a) => a.status === 'Pending').length;
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-100 font-sans selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#f8fafc] font-sans selection:bg-emerald-500 selection:text-white">
       {/* Official Government / Agency Header */}
       <Navbar
         activeTab={activeTab}

@@ -4,40 +4,44 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 min-h-screen selection:bg-emerald-500 selection:text-white;
+    @apply bg-[#f8fafc] text-slate-900 min-h-screen selection:bg-emerald-500 selection:text-white font-['Plus_Jakarta_Sans',sans-serif];
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-/* Custom scrollbars */
+/* Custom minimal scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
-  border-radius: 4px;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
 
-/* Leaflet map styling overrides */
+/* Leaflet map styling overrides for light minimalist UI */
 .leaflet-container {
   font-family: inherit;
   z-index: 10;
+  border-radius: 1rem;
 }
 
 .leaflet-popup-content-wrapper {
-  border-radius: 0.75rem;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  border: 1px solid #f1f5f9;
   padding: 0;
+  background: #ffffff;
 }
 
 .leaflet-popup-content {
@@ -45,22 +49,40 @@
   line-height: 1.5;
 }
 
-/* Pulse animation for high severity alerts */
-@keyframes pulse-ring {
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  border-radius: 0.75rem !important;
+  overflow: hidden;
+}
+
+.leaflet-control-zoom a {
+  background-color: #ffffff !important;
+  color: #334155 !important;
+  border: 1px solid #f1f5f9 !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Minimal Pulse ring */
+@keyframes pulse-subtle {
   0% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    opacity: 0.8;
   }
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
   }
   100% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    opacity: 0.8;
   }
 }
 
-.pulse-critical {
-  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.pulse-subtle {
+  animation: pulse-subtle 2.5s ease-in-out infinite;
 }

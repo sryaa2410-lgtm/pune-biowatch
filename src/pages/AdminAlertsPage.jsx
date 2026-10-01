@@ -29,24 +29,24 @@ export default function AdminAlertsPage({ alerts = [], onUpdateStatus, regions =
   return (
     <div className="space-y-8">
       {/* Internal Tool Header */}
-      <div className="bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 shadow-md flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div>
-          <div className="flex items-center space-x-2 text-xs font-mono uppercase text-emerald-400 font-bold mb-1">
-            <ShieldAlert className="w-4 h-4 text-emerald-400" />
-            <span>Official Administrative Console • Pune Forest & Municipal Cell</span>
+      <div className="bg-white/80 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div className="space-y-1.5">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-[11px] font-mono font-medium border border-emerald-200/60">
+            <ShieldAlert className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Administrative Console • Pune Forest & Municipal Cell</span>
           </div>
-          <h1 className="text-2xl font-extrabold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-semibold text-slate-900 tracking-tight">
             Ecological Threshold Directives & Incident Dispatch Desk
           </h1>
-          <p className="text-xs text-slate-400 mt-1 max-w-2xl">
+          <p className="text-sm text-slate-500 max-w-2xl leading-relaxed">
             Automated alerts synthesized from real-time meteorological sensor feeds, river flow monitors, and satellite vegetation reflectance thresholds across Pune district.
           </p>
         </div>
 
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-3 flex-shrink-0">
           <button
             onClick={handleExportCSV}
-            className="flex items-center space-x-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-colors shadow-sm"
+            className="flex items-center space-x-2 px-5 py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-medium shadow-sm transition-all"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Export Directives (CSV)</span>

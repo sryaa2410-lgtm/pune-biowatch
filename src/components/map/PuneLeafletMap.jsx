@@ -200,29 +200,29 @@ export default function PuneLeafletMap({
   }, [selectedRegionId, regions]);
 
   return (
-    <div className="relative rounded-xl overflow-hidden border border-slate-300 shadow-inner bg-slate-100">
+    <div className="relative rounded-3xl overflow-hidden border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] bg-slate-100">
       <div ref={mapContainerRef} style={{ height, width: '100%' }} />
 
       {/* Map Legend Overlay */}
-      <div className="absolute bottom-4 left-4 z-20 bg-white/95 backdrop-blur-md p-3 rounded-lg border border-slate-200 shadow-md text-xs font-mono">
-        <div className="font-bold text-slate-800 uppercase tracking-wider mb-2 text-[10px]">
+      <div className="absolute bottom-4 left-4 z-20 bg-white/90 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200/80 shadow-md text-xs">
+        <div className="font-semibold text-slate-800 uppercase tracking-wider mb-2 text-[10px] font-mono">
           Climate Vulnerability Index
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-1.5 text-[11px]">
           <div className="flex items-center space-x-2">
-            <span className="w-3 h-3 rounded-full bg-red-500 border border-white shadow-sm"></span>
-            <span className="text-slate-700">Critical (&gt;85)</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-red-500 shadow-sm"></span>
+            <span className="text-slate-600">Critical (&gt;85)</span>
           </div>
           <div className="flex items-center space-x-2">
-            <span className="w-3 h-3 rounded-full bg-amber-500 border border-white shadow-sm"></span>
-            <span className="text-slate-700">High Stress (70-84)</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-sm"></span>
+            <span className="text-slate-600">High Stress (70-84)</span>
           </div>
           <div className="flex items-center space-x-2">
-            <span className="w-3 h-3 rounded-full bg-emerald-500 border border-white shadow-sm"></span>
-            <span className="text-slate-700">Moderate (&lt;70)</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm"></span>
+            <span className="text-slate-600">Moderate (&lt;70)</span>
           </div>
         </div>
-        <div className="text-[10px] text-slate-400 mt-2 pt-1.5 border-t border-slate-200">
+        <div className="text-[10px] text-slate-400 mt-2.5 pt-2 border-t border-slate-100">
           Click marker to open dossier
         </div>
       </div>

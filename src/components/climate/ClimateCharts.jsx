@@ -48,102 +48,102 @@ export default function ClimateCharts({ climateData }) {
     <div className="space-y-6">
       {/* Overview Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <div className="flex items-center space-x-2 text-slate-500 text-xs font-mono mb-1">
-            <Thermometer className="w-3.5 h-3.5 text-red-500" />
+        <div className="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
+          <div className="flex items-center space-x-1.5 text-slate-400 text-xs font-mono mb-1">
+            <Thermometer className="w-3.5 h-3.5 text-rose-500" />
             <span>10-Yr Mean Temp Rise</span>
           </div>
-          <div className="text-2xl font-bold text-red-600">{districtOverview.decadeAvgTempRise}</div>
-          <div className="text-[11px] text-slate-500 mt-1">Over 1981-2010 normal</div>
+          <div className="text-2xl font-bold font-mono text-slate-900">{districtOverview.decadeAvgTempRise}</div>
+          <div className="text-[11px] text-slate-400 mt-1">Over 1981-2010 normal</div>
         </div>
 
-        <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <div className="flex items-center space-x-2 text-slate-500 text-xs font-mono mb-1">
+        <div className="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
+          <div className="flex items-center space-x-1.5 text-slate-400 text-xs font-mono mb-1">
             <CloudRain className="w-3.5 h-3.5 text-blue-500" />
             <span>Monsoon Onset Shift</span>
           </div>
-          <div className="text-xl font-bold text-blue-700">{districtOverview.monsoonOnsetShiftDays}</div>
-          <div className="text-[11px] text-slate-500 mt-1">Delayed arrival window</div>
+          <div className="text-lg font-bold font-mono text-blue-700">{districtOverview.monsoonOnsetShiftDays}</div>
+          <div className="text-[11px] text-slate-400 mt-1">Delayed arrival window</div>
         </div>
 
-        <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <div className="flex items-center space-x-2 text-slate-500 text-xs font-mono mb-1">
+        <div className="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
+          <div className="flex items-center space-x-1.5 text-slate-400 text-xs font-mono mb-1">
             <AlertTriangle className="w-3.5 h-3.5 text-amber-500" />
-            <span>Avg Dry Spell Duration</span>
+            <span>Avg Dry Spell</span>
           </div>
-          <div className="text-2xl font-bold text-amber-600">{districtOverview.monsoonDrySpellAverageDays} days</div>
-          <div className="text-[11px] text-slate-500 mt-1">Consecutive rainless days</div>
+          <div className="text-2xl font-bold font-mono text-amber-700">{districtOverview.monsoonDrySpellAverageDays} days</div>
+          <div className="text-[11px] text-slate-400 mt-1">Consecutive rainless days</div>
         </div>
 
-        <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <div className="flex items-center space-x-2 text-slate-500 text-xs font-mono mb-1">
+        <div className="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
+          <div className="flex items-center space-x-1.5 text-slate-400 text-xs font-mono mb-1">
             <TrendingUp className="w-3.5 h-3.5 text-emerald-500" />
-            <span>Species Stress Trend</span>
+            <span>Stress Index Trend</span>
           </div>
-          <div className="text-2xl font-bold text-slate-900">+58.6%</div>
-          <div className="text-[11px] text-slate-500 mt-1">Index change since 2015</div>
+          <div className="text-2xl font-bold font-mono text-emerald-700">+58.6%</div>
+          <div className="text-[11px] text-slate-400 mt-1">Composite species stress</div>
         </div>
       </div>
 
-      {/* Chart Selector Tabs */}
-      <div className="flex flex-wrap items-center justify-between gap-3 bg-white p-2.5 rounded-xl border border-slate-200">
-        <div className="flex space-x-1.5 overflow-x-auto">
+      {/* Modern Pill Tab Selector */}
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-white p-2 rounded-full border border-slate-200/80 shadow-sm">
+        <div className="flex space-x-1 overflow-x-auto">
           <button
             onClick={() => setActiveTab('trends')}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+            className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
               activeTab === 'trends'
-                ? 'bg-slate-900 text-white shadow-sm'
+                ? 'bg-slate-900 text-white shadow-sm font-semibold'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
-            Decadal Temperature & Precipitation (2015-2024)
+            Decadal Trends
           </button>
           <button
             onClick={() => setActiveTab('correlation')}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+            className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
               activeTab === 'correlation'
                 ? 'bg-slate-900 text-white shadow-sm'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
-            Climate Heat vs Species Stress Correlation
+            Heat vs Stress Correlation
           </button>
           <button
             onClick={() => setActiveTab('monthly')}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+            className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
               activeTab === 'monthly'
                 ? 'bg-slate-900 text-white shadow-sm'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
-            Monthly Climatology & Humidity Cycle
+            Monthly Climatology
           </button>
           <button
             onClick={() => setActiveTab('regions')}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+            className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
               activeTab === 'regions'
                 ? 'bg-slate-900 text-white shadow-sm'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
-            Microclimate Regional Comparison
+            Regional Comparison
           </button>
         </div>
 
-        <div className="text-xs text-slate-500 font-mono flex items-center space-x-1">
-          <Info className="w-3.5 h-3.5 text-slate-400" />
-          <span>IMD & Eco-Modeling Data</span>
+        <div className="text-[11px] text-slate-400 font-mono pr-3 hidden sm:flex items-center space-x-1">
+          <Info className="w-3.5 h-3.5" />
+          <span>IMD & Eco-Model Verified</span>
         </div>
       </div>
 
       {/* CHART 1: Decadal Trends */}
       {activeTab === 'trends' && (
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <div className="bg-white/80 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] space-y-5">
           <div>
-            <h3 className="text-base font-bold text-slate-900">
+            <h3 className="text-base font-semibold text-slate-900">
               Pune District Mean Temperature Anomaly & Extreme Heat Days (2015 – 2024)
             </h3>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 mt-0.5">
               Demonstrates consistent positive thermal anomalies above the 25.1°C normal baseline, accompanied by tripling of extreme heat days (&gt;40°C).
             </p>
           </div>
@@ -204,12 +204,12 @@ export default function ClimateCharts({ climateData }) {
 
       {/* CHART 2: Correlation with Species Stress */}
       {activeTab === 'correlation' && (
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <div className="bg-white/80 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] space-y-5">
           <div>
-            <h3 className="text-base font-bold text-slate-900">
+            <h3 className="text-base font-semibold text-slate-900">
               Correlation: Climatic Heat Pressure vs. Composite Species Stress Index
             </h3>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 mt-0.5">
               The Species Stress Index integrates mortality events, breeding failures, and range shifts recorded across 18 Pune indicator species. Strong positive correlation ($r = 0.91$) with extreme heat occurrences.
             </p>
           </div>
@@ -271,12 +271,12 @@ export default function ClimateCharts({ climateData }) {
 
       {/* CHART 3: Monthly Climatology */}
       {activeTab === 'monthly' && (
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <div className="bg-white/80 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] space-y-5">
           <div>
-            <h3 className="text-base font-bold text-slate-900">
+            <h3 className="text-base font-semibold text-slate-900">
               Pune District Monthly Normal vs Current Year Precipitation & Temperature
             </h3>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 mt-0.5">
               Pre-monsoon heat spikes in April-May trigger thermal stress in urban bat roosts, while irregular post-monsoon rain extends into October.
             </p>
           </div>
@@ -341,20 +341,20 @@ export default function ClimateCharts({ climateData }) {
 
       {/* CHART 4: Regional Comparison */}
       {activeTab === 'regions' && (
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div className="bg-white/80 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] space-y-5">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
-              <h3 className="text-base font-bold text-slate-900">
+              <h3 className="text-base font-semibold text-slate-900">
                 Microclimate Variation Across Pune Sub-Regions
               </h3>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-slate-500 mt-0.5">
                 Comparison of peak summer heat, total monsoon precipitation, and species stress rating.
               </p>
             </div>
             <select
               value={selectedRegionId}
               onChange={(e) => setSelectedRegionId(e.target.value)}
-              className="text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-300 bg-slate-50 text-slate-700"
+              className="text-xs font-medium px-4 py-2 rounded-full border border-slate-200/80 bg-slate-50/80 text-slate-700 hover:bg-white focus:outline-none cursor-pointer"
             >
               <option value="all">Compare All 8 Sub-Regions</option>
               {regionalComparisons.map((r) => (
@@ -418,27 +418,27 @@ export default function ClimateCharts({ climateData }) {
             {regionalComparisons.map((reg) => (
               <div
                 key={reg.regionId}
-                className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs flex flex-col justify-between"
+                className="p-4 bg-slate-50/70 rounded-2xl border border-slate-200/60 text-xs flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="font-bold text-slate-800">{reg.regionName}</span>
+                  <div className="flex justify-between items-center mb-1.5">
+                    <span className="font-semibold text-slate-800">{reg.regionName}</span>
                     <span
-                      className={`font-mono text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                      className={`font-mono text-[10px] font-medium px-2 py-0.5 rounded-full ${
                         reg.stressRating >= 85
-                          ? 'bg-red-100 text-red-700'
+                          ? 'bg-rose-50 text-rose-700 border border-rose-200/60'
                           : reg.stressRating >= 75
-                          ? 'bg-amber-100 text-amber-700'
-                          : 'bg-emerald-100 text-emerald-700'
+                          ? 'bg-amber-50 text-amber-700 border border-amber-200/60'
+                          : 'bg-emerald-50 text-emerald-700 border border-emerald-200/60'
                       }`}
                     >
                       Stress {reg.stressRating}
                     </span>
                   </div>
-                  <div className="text-slate-500 text-[11px] mb-1.5">
+                  <div className="text-slate-500 text-[11px] mb-2">
                     Rainfall: <b className="text-slate-700">{reg.monsoonRainfall} mm</b> • UHI: <b className="text-slate-700">{reg.uhiOffset > 0 ? `+${reg.uhiOffset}°C` : `${reg.uhiOffset}°C`}</b>
                   </div>
-                  <p className="text-[11px] text-slate-600 line-clamp-2">{reg.dominantStress}</p>
+                  <p className="text-[11px] text-slate-600 line-clamp-2 leading-relaxed">{reg.dominantStress}</p>
                 </div>
               </div>
             ))}

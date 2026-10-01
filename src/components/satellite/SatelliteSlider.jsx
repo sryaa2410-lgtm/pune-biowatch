@@ -140,10 +140,10 @@ export default function SatelliteSlider() {
                 setSelectedHotspot(hotspot);
                 setSliderPos(50);
               }}
-              className={`px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center space-x-2 transition-all border ${
+              className={`px-4 py-2 rounded-full text-xs font-medium flex items-center space-x-2 transition-all ${
                 isSelected
-                  ? 'bg-slate-900 text-white border-slate-900 shadow-md scale-[1.02]'
-                  : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+                  ? 'bg-slate-900 text-white shadow-sm ring-1 ring-slate-900'
+                  : 'bg-white/80 hover:bg-white text-slate-600 border border-slate-200/80 hover:border-slate-300'
               }`}
             >
               <Layers className={`w-3.5 h-3.5 ${isSelected ? 'text-emerald-400' : 'text-slate-400'}`} />
@@ -154,25 +154,25 @@ export default function SatelliteSlider() {
       </div>
 
       {/* Main Interactive Comparison Stage */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden p-6 space-y-6">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 border-b border-slate-100 pb-4">
-          <div>
+      <div className="bg-white/80 backdrop-blur-md rounded-3xl border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] overflow-hidden p-6 sm:p-8 space-y-6">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 border-b border-slate-100 pb-5">
+          <div className="space-y-1.5">
             <div className="flex items-center space-x-2">
-              <span className="text-xs font-mono uppercase bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">
+              <span className="text-[11px] font-mono uppercase bg-emerald-50 text-emerald-800 border border-emerald-200/60 px-2.5 py-0.5 rounded-full font-medium">
                 Sentinel-2 & Landsat Decadal Observation
               </span>
-              <span className="text-xs text-slate-400 font-mono">10-Year Satellite Revisit</span>
+              <span className="text-[11px] text-slate-400 font-mono">10-Year Satellite Revisit</span>
             </div>
-            <h2 className="text-xl font-extrabold text-slate-900 mt-1">
+            <h2 className="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">
               {selectedHotspot.title}
             </h2>
-            <p className="text-xs text-slate-500 font-medium">
+            <p className="text-xs text-slate-500">
               {selectedHotspot.subtitle}
             </p>
           </div>
 
-          <div className="text-xs font-mono text-slate-500 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200 self-start md:self-auto flex items-center space-x-2">
-            <MoveHorizontal className="w-4 h-4 text-emerald-600 animate-pulse" />
+          <div className="text-xs font-mono text-slate-500 bg-slate-50/80 px-3.5 py-1.5 rounded-full border border-slate-200/80 self-start md:self-auto flex items-center space-x-2">
+            <MoveHorizontal className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
             <span>Drag center divider to compare</span>
           </div>
         </div>
@@ -180,7 +180,7 @@ export default function SatelliteSlider() {
         {/* Interactive Drag Stage */}
         <div
           ref={containerRef}
-          className="relative w-full aspect-[16/10] sm:aspect-[16/9] max-h-[500px] rounded-xl overflow-hidden select-none border border-slate-300 shadow-md cursor-ew-resize bg-slate-950"
+          className="relative w-full aspect-[16/10] sm:aspect-[16/9] max-h-[500px] rounded-2xl overflow-hidden select-none border border-slate-200 shadow-inner cursor-ew-resize bg-slate-950"
           onMouseDown={handleMouseDown}
           onTouchStart={handleTouchStart}
         >
@@ -208,24 +208,24 @@ export default function SatelliteSlider() {
 
           {/* Divider Line & Handle */}
           <div
-            className="absolute top-0 bottom-0 w-1 bg-white shadow-2xl z-30 pointer-events-none"
+            className="absolute top-0 bottom-0 w-0.5 bg-white/90 shadow-2xl z-30 pointer-events-none"
             style={{ left: `${sliderPos}%` }}
           >
-            <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-slate-900/90 text-white border-2 border-white shadow-2xl flex items-center justify-center pointer-events-auto cursor-ew-resize hover:scale-110 transition-transform">
-              <MoveHorizontal className="w-5 h-5 text-emerald-400" />
+            <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-slate-900/95 text-white border-2 border-white shadow-xl flex items-center justify-center pointer-events-auto cursor-ew-resize hover:scale-110 transition-transform">
+              <MoveHorizontal className="w-4 h-4 text-emerald-400" />
             </div>
           </div>
 
           {/* Floating Timestamp Badges */}
           <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
-            <span className="bg-slate-950/85 backdrop-blur-md text-emerald-400 text-xs font-mono font-bold px-3 py-1.5 rounded-lg border border-emerald-500/50 shadow-lg flex items-center space-x-1.5">
+            <span className="bg-slate-900/80 backdrop-blur-md text-emerald-300 text-xs font-mono font-medium px-3 py-1.5 rounded-full border border-emerald-500/30 shadow-lg flex items-center space-x-1.5">
               <Calendar className="w-3.5 h-3.5" />
               <span>BEFORE: {selectedHotspot.beforeYear}</span>
             </span>
           </div>
 
           <div className="absolute bottom-4 right-4 z-20 pointer-events-none">
-            <span className="bg-slate-950/85 backdrop-blur-md text-rose-400 text-xs font-mono font-bold px-3 py-1.5 rounded-lg border border-rose-500/50 shadow-lg flex items-center space-x-1.5">
+            <span className="bg-slate-900/80 backdrop-blur-md text-rose-300 text-xs font-mono font-medium px-3 py-1.5 rounded-full border border-rose-500/30 shadow-lg flex items-center space-x-1.5">
               <Calendar className="w-3.5 h-3.5" />
               <span>AFTER: {selectedHotspot.afterYear}</span>
             </span>
@@ -233,18 +233,18 @@ export default function SatelliteSlider() {
         </div>
 
         {/* Change Metrics Cards */}
-        <div>
-          <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold mb-3">
+        <div className="space-y-3">
+          <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">
             Decadal Remote Sensing Key Change Metrics
           </h4>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {selectedHotspot.metrics.map((metric, idx) => (
               <div
                 key={idx}
-                className="bg-slate-50 p-3.5 rounded-xl border border-slate-200/80 flex flex-col justify-between"
+                className="bg-slate-50/70 p-4 rounded-2xl border border-slate-200/70 flex flex-col justify-between"
               >
-                <span className="text-[11px] text-slate-500 font-medium">{metric.label}</span>
-                <span className={`text-xl font-extrabold font-mono mt-1 ${metric.color}`}>
+                <span className="text-xs text-slate-500">{metric.label}</span>
+                <span className={`text-xl font-bold font-mono mt-1 ${metric.color}`}>
                   {metric.value}
                 </span>
               </div>
@@ -253,8 +253,8 @@ export default function SatelliteSlider() {
         </div>
 
         {/* Narrative Description */}
-        <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed">
-          <span className="font-bold text-slate-900 block mb-1">
+        <div className="bg-slate-50/70 p-5 rounded-2xl border border-slate-200/70 text-xs text-slate-600 leading-relaxed">
+          <span className="font-semibold text-slate-900 block mb-1">
             Remote Sensing & Environmental Impact Analysis:
           </span>
           {selectedHotspot.summary}
